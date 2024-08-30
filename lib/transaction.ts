@@ -184,7 +184,7 @@ export class TransactionCommand extends CliCommand {
         this.run("submit", [
             { name: "tx-file", value: signedTxFile },
             { name: "socket-path", value: this.cli.options.socketPath }
-        ]);
+        ], true);
 
         return this.txId({ txFile: signedTxFile });
     }
