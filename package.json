@@ -5,8 +5,7 @@
   "main": "dist/index.js",
   "scripts": {
     "test": "jest -i",
-    "build": "npx tsc",
-    "postinstall": "npm run build"
+    "build": "tsc"
   },
   "repository": {
     "type": "git",
