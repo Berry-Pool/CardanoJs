@@ -112,12 +112,12 @@ export class TransactionCommand extends CliCommand {
     sign(txBodyFile: string, signingKeyFiles: string[]) : string {
         let uid = Math.random().toString(36).substring(2, 9);
         const outFile = `/tmp/transaction-${uid}.signed`;
-        const params =  [
+        let params =  [
             { name: "tx-body-file", value: txBodyFile },
             { name: "out-file", value: outFile },
         ];
         const signings = signingKeyFiles.map((s) => ({ name: "signing-key-file", value: s }));
-        params.concat(signings);
+        params = params.concat(signings);
 
         this.run("sign", params);
 
@@ -184,7 +184,7 @@ export class TransactionCommand extends CliCommand {
         this.run("submit", [
             { name: "tx-file", value: signedTxFile },
             { name: "socket-path", value: this.cli.options.socketPath }
-        ]);
+        ], true);
 
         return this.txId({ txFile: signedTxFile });
     }
